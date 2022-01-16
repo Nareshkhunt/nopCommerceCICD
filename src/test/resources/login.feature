@@ -1,7 +1,7 @@
 
 Feature: Login
 
-  @smoke
+  @EndToEnd
   Scenario: Validate login page
     Given I am on the home page
     When I click on the "Log in"

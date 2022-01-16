@@ -1,5 +1,5 @@
 Feature: Registration using Data table
-  @smoke
+  @EndToEnd
   Scenario: Registration using data table
     Given I am on the home page
     When I click on the "Register"

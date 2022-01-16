@@ -1,4 +1,4 @@
-@smoke
+@EndToEnd
 Feature: Basket
   As a customer,
   I want to add product to basket

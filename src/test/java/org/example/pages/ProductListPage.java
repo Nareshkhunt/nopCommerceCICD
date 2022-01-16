@@ -10,7 +10,6 @@ public class ProductListPage extends DriverManager {
     private WebElement textOnListPage;
 
     public String getTextFromListPage(){
-
         return   textOnListPage.getText();
     }
 }
