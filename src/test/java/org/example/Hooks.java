@@ -10,8 +10,8 @@ public class Hooks {
 
     @Before
     public void setUp() throws IllegalAccessException {
-//       driverManager.runOnLocalBrowser();
-        driverManager.runInHeadlessBrowser();
+       driverManager.runOnLocalBrowser();
+//        driverManager.runInHeadlessBrowser();
         driverManager.goToUrl();
         driverManager.maxBrowser();
         driverManager.applyImlicitWait();

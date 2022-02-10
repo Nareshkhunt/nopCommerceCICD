@@ -1,8 +1,13 @@
 package org.example.pages;
 
+import org.apache.commons.io.FileUtils;
 import org.example.driver.DriverManager;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.io.File;
+import java.io.IOException;
 
 public class HomePage extends DriverManager {
 
@@ -23,6 +28,9 @@ public class HomePage extends DriverManager {
 
     @FindBy(linkText = "Contact us")
     private WebElement contactUs;
+
+    @FindBy(id = "small-searchterms")
+    private WebElement searchInputField;
 
 
      public String getTextFromHomePage(){
@@ -52,5 +60,9 @@ public class HomePage extends DriverManager {
     public void clickOnContactUs() {
          scrollTo(contactUs);
          contactUs.click();
+    }
+
+    public void takeSearchFieldScreenshot() throws IOException {
+      takeElementscreenshot(searchInputField, "search");
     }
 }

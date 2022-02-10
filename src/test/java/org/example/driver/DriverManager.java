@@ -10,6 +10,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -40,6 +41,9 @@ public class DriverManager {
                     WebDriverManager.edgedriver().setup();
                     driver= new EdgeDriver();
                     break;
+              case "safari":
+                  driver= new SafariDriver();
+                  break;
               case "firefox":
                   WebDriverManager.firefoxdriver().setup();
                   driver=new FirefoxDriver();
@@ -120,6 +124,15 @@ public class DriverManager {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
+    public void takeElementscreenshot(WebElement element, String fileName)  {
+        File scnFile =element.getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(scnFile, new File("./target/screenshots/" +fileName+ ".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void takeScreenshot(Scenario scenario){
 
           byte[] screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
@@ -140,4 +153,16 @@ public class DriverManager {
          // Obtain a number between [0 - 49].
         return random.nextInt(50);
      }
+
+    public static String getRandomString(int length) {
+        final String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJLMNOPQRSTUVWXYZ";
+        StringBuilder result = new StringBuilder();
+
+        while(length > 0) {
+            Random rand = new Random();
+            result.append(characters.charAt(rand.nextInt(characters.length())));
+            length--;
+        }
+        return result.toString();
+    }
 }
