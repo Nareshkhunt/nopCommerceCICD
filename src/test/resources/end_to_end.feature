@@ -1,6 +1,7 @@
+@EndToEnd
 Feature: End to End functionality
 
-  @EndToEnd
+
   Scenario: Buy one product
     Given I am on the home page
     And I click on the "Register"
