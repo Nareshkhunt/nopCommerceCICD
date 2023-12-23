@@ -1,4 +1,4 @@
-@EndToEnd
+@EndToEnd @regression
 Feature: Element screenshot
 
 

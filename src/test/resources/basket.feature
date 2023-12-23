@@ -1,4 +1,4 @@
-@EndToEnd
+@EndToEnd1 @regression @smoke @nrk1
 Feature: Basket
   As a customer,
   I want to add product to basket

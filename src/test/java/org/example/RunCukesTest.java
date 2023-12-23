@@ -9,7 +9,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(features = "src/test/resources",
         dryRun = false,
         strict = true,
-        tags = "~@ignore",
+        monochrome = true,
+        tags = "@nrkhunt",
         plugin = "json:target/cucumber-report/cucumber.json")
 public class RunCukesTest {
 // a json report is generated as target/cucumber-report
