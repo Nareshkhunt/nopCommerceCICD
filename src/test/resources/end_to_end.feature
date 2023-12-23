@@ -1,6 +1,7 @@
+@regression
 Feature: End to End functionality
 
-  @EndToEnd
+  @EndToEnd2
   Scenario: Buy one product
     Given I am on the home page
     And I click on the "Register"

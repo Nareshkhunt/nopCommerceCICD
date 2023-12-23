@@ -3,6 +3,7 @@ package org.example.driver;
 import cucumber.api.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -17,17 +18,23 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+
 
 public class DriverManager {
 
      public static WebDriver driver;
      String browser="chrome";
      String basUrl ="https://demo.nopcommerce.com/";
+    public static Logger log = Logger.getLogger(DriverManager.class);
 
     public DriverManager(){
         PageFactory.initElements(driver,this);
+        log.info("Driver is started");
+
     }
 
 
@@ -36,6 +43,7 @@ public class DriverManager {
                case "chrome":
                     WebDriverManager.chromedriver().setup();
                     driver=new ChromeDriver();
+                   log.info("Launched Chrome Instance");
                     break;
                case "edge":
                     WebDriverManager.edgedriver().setup();
@@ -61,8 +69,7 @@ public class DriverManager {
                    options.setHeadless(true);
                    options.addArguments("--window-size=1920,1080");
                    driver = new ChromeDriver(options);
-
-                break;
+                   break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions=new FirefoxOptions();
@@ -72,9 +79,9 @@ public class DriverManager {
                 break;
             case "edge":
                 WebDriverManager.edgedriver().setup();
-                EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.setCapability("headless", true);
-                driver= new EdgeDriver(edgeOptions);
+                EdgeOptions op=new EdgeOptions();
+//                op.addArguments("headless");
+                driver= new EdgeDriver(op);
                 break;
             default:
                 throw new IllegalAccessException("Unexpected browser");
@@ -84,13 +91,18 @@ public class DriverManager {
      public void maxBrowser(){
           driver.manage().window().maximize();
      }
-
-      public void applyImlicitWait(){
+      //sele 3.14
+      public void applyImlicitWaitSel3(){
           driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
       }
+      //sele 4.0
+      public void applyImlicitWaitSele4(){
+//      driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+    }
 
       public void closeBrowser(){
           driver.quit();
+          log.info("Browser is closed");
       }
 
       public void sleepBrowser(int ms) throws InterruptedException {
